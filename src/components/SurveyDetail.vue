@@ -42,16 +42,35 @@ export default {
     getSurveyDetail () {
       const url = 'http://localhost:8000/api/survey/' + this.id
       const token = auth.getAuthHeaderValue()
-
-      axios.get(url, {
-        headers: {'Authorization': token}
-      })
-      .then((response) => {
-        this.survey = response.data
-      })
-      .catch((error) => {
-        this.error = error
-      })
+      if (auth.isAuthenticated()) {
+        axios.get(url, {
+          headers: {'Authorization': token}
+        })
+        .then((response) => {
+          this.survey = response.data
+        })
+        .catch((error) => {
+          if (error.response) {
+            this.error = error.response.data
+            console.log(error.response.data)
+            console.log(error.response.status)
+            console.log(error.response.headers)
+          }
+        })
+      } else {
+        axios.get(url)
+        .then((response) => {
+          this.survey = response.data
+        })
+        .catch((error) => {
+          if (error.response) {
+            this.error = error.response.data
+            console.log(error.response.data)
+            console.log(error.response.status)
+            console.log(error.response.headers)
+          }
+        })
+      }
     }
   }
 }

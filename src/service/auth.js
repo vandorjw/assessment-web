@@ -15,7 +15,11 @@ export default {
       sessionStorage.setItem('dj_token', response.data.token)
     })
     .catch((error) => {
-      console.log(error)
+      if (error.response) {
+        console.log(error.response.data)
+        console.log(error.response.status)
+        console.log(error.response.headers)
+      }
     })
   },
 
@@ -24,12 +28,14 @@ export default {
     this.user.authenticated = false
   },
 
-  checkAuth () {
+  isAuthenticated () {
     var token = sessionStorage.getItem('dj_token')
     if (token) {
       this.user.authenticated = true
+      return true
     } else {
       this.user.authenticated = false
+      return false
     }
   },
 
