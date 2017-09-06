@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <pre>{{ survey._uid }}</pre>
+  <div v-if="survey">
     <pre>is_active: {{ survey.is_active }}</pre>
     <pre>is_private: {{ survey.is_private }}</pre>
     <pre>start_date_time: {{ survey.start_date_time }}</pre>
@@ -18,6 +17,9 @@
         <pre>{{ question }}</pre>
       </li>
     </ol>
+  </div>
+  <div v-else>
+    <p>Either survey does not exist or you are not authorized to see it</p>
   </div>
 </template>
 
