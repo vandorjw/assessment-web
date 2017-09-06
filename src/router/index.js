@@ -5,6 +5,7 @@ import Login from '@/components/Login'
 import Logout from '@/components/Logout'
 import SurveyList from '@/components/SurveyList'
 import SurveyDetail from '@/components/SurveyDetail'
+import QuestionDetail from '@/components/QuestionDetail'
 
 Vue.use(Router)
 
@@ -34,6 +35,12 @@ export default new Router({
       path: '/survey/:id',
       name: 'SurveyDetail',
       component: SurveyDetail,
+      props: true
+    },
+    {
+      path: '/question/:id',
+      name: 'QuestionDetail',
+      component: QuestionDetail,
       props: true
     }
   ]
