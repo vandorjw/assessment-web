@@ -1,5 +1,7 @@
 <template>
-    <form id="form" v-on:submit.prevent="loginUser" method="post">
+  <div id="login-page">
+    <v-header></v-header>
+    <form v-on:submit.prevent="loginUser" method="post">
       <label for="username">Username</label>
       <input
         type="text"
@@ -16,11 +18,16 @@
       >
       <input type="submit" value="login">
     </form>
+  </div>
 </template>
 
 <script>
+import Header from './Header'
 import auth from '../service/auth'
 export default {
+  components: {
+    'v-header': Header
+  },
   data () {
     return {
       // We need to initialize the component with any

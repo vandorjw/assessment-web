@@ -1,6 +1,6 @@
 <template>
   <div v-if="question">
-    <form id="form" v-on:submit.prevent="submitAnswer" method="post">
+    <form v-on:submit.prevent="submitAnswer" method="post">
       <label for="answer">{{ question.translations.en.question }}</label>
       <input
         type="text"
