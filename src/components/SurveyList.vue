@@ -2,7 +2,7 @@
   <div>
     <ul>
       <li v-for="survey in surveys">
-      {{ survey.translations.en.name }}
+      <router-link :to="{ name: 'SurveyDetail', params: { id: survey._uid }}">{{ survey.translations.en.name }}</router-link>
       </li>
     </ul>
   </div>
