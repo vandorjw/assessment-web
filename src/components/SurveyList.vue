@@ -1,12 +1,16 @@
 <template>
-  <ul>
-    <li></li>
-  </ul>
+  <div>
+    <ul>
+      <li v-for="survey in surveys">
+      {{ survey.translations.en.name }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
-import auth from '../service/auth'
 import axios from 'axios'
+import auth from '../service/auth'
 
 export default {
   data () {
@@ -16,23 +20,22 @@ export default {
     }
   },
   created () {
-    axios.get('http://localhost:8000/api/survey/')
-    .then(function (response) {
-      console.log(response)
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
+    this.getSurveyList()
   },
   methods: {
-    getSurveyList: function () {
-      var credentials = {
-        username: this.credentials.username,
-        password: this.credentials.password
-      }
-      // We need to pass the component's this context
-      // to properly make use of http in the auth service
-      auth.login(credentials, 'redirect-url')
+    getSurveyList () {
+      const url = 'http://localhost:8000/api/survey/'
+      const token = auth.getAuthHeaderValue()
+
+      axios.get(url, {
+        headers: {'Authorization': token}
+      })
+      .then((response) => {
+        this.surveys = response.data
+      })
+      .catch((error) => {
+        this.error = error
+      })
     }
   }
 }
