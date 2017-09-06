@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import auth from '../auth'
+import auth from '../service/auth'
 export default {
   name: 'hello',
   data () {
