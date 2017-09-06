@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Login from '@/components/Login'
+import Logout from '@/components/Logout'
 import SurveyList from '@/components/SurveyList'
 import SurveyDetail from '@/components/SurveyDetail'
 
@@ -15,9 +16,14 @@ export default new Router({
       component: Hello
     },
     {
-      path: '/login/',
+      path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/logout',
+      name: 'Logout',
+      component: Logout
     },
     {
       path: '/surveys',

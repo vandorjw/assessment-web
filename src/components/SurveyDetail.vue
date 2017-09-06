@@ -38,7 +38,6 @@ export default {
   },
   methods: {
     getSurveyDetail () {
-      console.log(this.id)
       const url = 'http://localhost:8000/api/survey/' + this.id
       const token = auth.getAuthHeaderValue()
 

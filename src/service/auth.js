@@ -30,12 +30,12 @@ export default {
   },
 
   logout () {
-    localStorage.removeItem('dj_token')
+    sessionStorage.removeItem('dj_token')
     this.user.authenticated = false
   },
 
   checkAuth () {
-    var token = localStorage.getItem('dj_token')
+    var token = sessionStorage.getItem('dj_token')
     if (token) {
       this.user.authenticated = true
     } else {

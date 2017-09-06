@@ -21,7 +21,6 @@
 <script>
 import auth from '../service/auth'
 export default {
-  name: 'hello',
   data () {
     return {
       // We need to initialize the component with any
