@@ -17,7 +17,6 @@
 
 <script>
 import axios from 'axios'
-import auth from '../service/auth'
 
 export default {
   props: ['id'],
@@ -34,36 +33,26 @@ export default {
   methods: {
     getQuestionDetail () {
       const url = 'http://localhost:8000/api/question/' + this.id + '/'
-      const token = auth.getAuthHeaderValue()
-      if (auth.isAuthenticated()) {
-        axios.get(url, {
-          headers: {'Authorization': token}
-        })
-        .then((response) => {
-          this.question = response.data
-        })
-        .catch((error) => {
-          if (error.response) {
-            this.error = error.response.data
-            console.log(error.response.data)
-            console.log(error.response.status)
-            console.log(error.response.headers)
-          }
-        })
-      } else {
-        axios.get(url)
-        .then((response) => {
-          this.question = response.data
-        })
-        .catch((error) => {
-          if (error.response) {
-            this.error = error.response.data
-            console.log(error.response.data)
-            console.log(error.response.status)
-            console.log(error.response.headers)
-          }
-        })
+      let requestHeaders = {}
+
+      if (this.$store.authenticated === true) {
+        requestHeaders['Authorization'] = 'Token' + this.$store.token
       }
+
+      axios.get(url, {
+        headers: requestHeaders
+      })
+      .then((response) => {
+        this.question = response.data
+      })
+      .catch((error) => {
+        if (error.response) {
+          this.error = error.response.data
+          console.log(error.response.data)
+          console.log(error.response.status)
+          console.log(error.response.headers)
+        }
+      })
     },
     submitAnswer () {
       console.log('submitAnswer stub: ' + this.answer)

@@ -1,18 +1,15 @@
 import axios from 'axios'
+import store from '../store/store'
 
 const API_URL = 'http://localhost:8000/'
 const LOGIN_URL = API_URL + 'api-token-auth/'
 
 export default {
 
-  user: {
-    authenticated: false
-  },
-
   login (creds, redirect) {
     axios.post(LOGIN_URL, creds)
     .then((response) => {
-      sessionStorage.setItem('dj_token', response.data.token)
+      store.commit('authenticate', response.data.token)
     })
     .catch((error) => {
       if (error.response) {
@@ -24,19 +21,7 @@ export default {
   },
 
   logout () {
-    sessionStorage.removeItem('dj_token')
-    this.user.authenticated = false
-  },
-
-  isAuthenticated () {
-    var token = sessionStorage.getItem('dj_token')
-    if (token) {
-      this.user.authenticated = true
-      return true
-    } else {
-      this.user.authenticated = false
-      return false
-    }
+    store.commit('deauthenticate')
   },
 
   getAuthHeaderValue () {

@@ -12,9 +12,14 @@
         <pre>description: {{ lang.description }}</pre>
       </li>
     </ul>
+    <div v-if="survey">
+      <form v-on:submit.prevent="startSurvey" method="post">
+        <input type="submit" value="submit">
+      </form>
+    </div>
     <ol>
       <li v-for="question in survey.questions">
-        <pre>{{ question }}</pre>
+        <router-link :to="{ name: 'QuestionDetail', params: { id: question._uid }}">{{ question.translations.en.question }}</router-link>
       </li>
     </ol>
   </div>
@@ -25,7 +30,6 @@
 
 <script>
 import axios from 'axios'
-import auth from '../service/auth'
 
 export default {
   props: ['id'],
@@ -39,38 +43,32 @@ export default {
     this.getSurveyDetail()
   },
   methods: {
+    startSurvey () {
+
+    },
     getSurveyDetail () {
       const url = 'http://localhost:8000/api/survey/' + this.id
-      const token = auth.getAuthHeaderValue()
-      if (auth.isAuthenticated()) {
-        axios.get(url, {
-          headers: {'Authorization': token}
-        })
-        .then((response) => {
-          this.survey = response.data
-        })
-        .catch((error) => {
-          if (error.response) {
-            this.error = error.response.data
-            console.log(error.response.data)
-            console.log(error.response.status)
-            console.log(error.response.headers)
-          }
-        })
-      } else {
-        axios.get(url)
-        .then((response) => {
-          this.survey = response.data
-        })
-        .catch((error) => {
-          if (error.response) {
-            this.error = error.response.data
-            console.log(error.response.data)
-            console.log(error.response.status)
-            console.log(error.response.headers)
-          }
-        })
+
+      let requestHeaders = {}
+
+      if (this.$store.authenticated === true) {
+        requestHeaders['Authorization'] = 'Token' + this.$store.token
       }
+
+      axios.get(url, {
+        headers: requestHeaders
+      })
+      .then((response) => {
+        this.survey = response.data
+      })
+      .catch((error) => {
+        if (error.response) {
+          this.error = error.response.data
+          console.log(error.response.data)
+          console.log(error.response.status)
+          console.log(error.response.headers)
+        }
+      })
     }
   }
 }

@@ -3,7 +3,7 @@
     <v-header></v-header>
     <ul>
       <li v-for="survey in surveys">
-      <router-link :to="{ name: 'SurveyDetail', params: { id: survey._uid }}">{{ survey.translations.en.name }}</router-link>
+        <router-link :to="{ name: 'SurveyDetail', params: { id: survey._uid }}">{{ survey.translations.en.name }}</router-link>
       </li>
     </ul>
   </div>
@@ -11,7 +11,6 @@
 
 <script>
 import axios from 'axios'
-import auth from '../service/auth'
 import Header from './Header'
 
 export default {
@@ -30,36 +29,31 @@ export default {
   methods: {
     getSurveyList () {
       const url = 'http://localhost:8000/api/survey/'
-      const token = auth.getAuthHeaderValue()
-      if (auth.isAuthenticated()) {
-        axios.get(url, {
-          headers: {'Authorization': token}
-        })
-        .then((response) => {
-          this.surveys = response.data
-        })
-        .catch((error) => {
-          if (error.response) {
-            this.error = error.response.data
-            console.log(error.response.data)
-            console.log(error.response.status)
-            console.log(error.response.headers)
-          }
-        })
+
+      let requestHeaders = {}
+
+      console.log(this.$store.state)
+      debugger
+      if (this.$store.state.authenticated === true) {
+        requestHeaders['Authorization'] = 'Token ' + this.$store.state.token
       } else {
-        axios.get(url)
-        .then((response) => {
-          this.surveys = response.data
-        })
-        .catch((error) => {
-          if (error.response) {
-            this.error = error.response.data
-            console.log(error.response.data)
-            console.log(error.response.status)
-            console.log(error.response.headers)
-          }
-        })
+        console.log('Not updating requestHeaders')
       }
+
+      axios.get(url, {
+        headers: requestHeaders
+      })
+      .then((response) => {
+        this.surveys = response.data
+      })
+      .catch((error) => {
+        if (error.response) {
+          this.error = error.response.data
+          console.log(error.response.data)
+          console.log(error.response.status)
+          console.log(error.response.headers)
+        }
+      })
     }
   }
 }
