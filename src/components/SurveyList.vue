@@ -32,8 +32,6 @@ export default {
 
       let requestHeaders = {}
 
-      console.log(this.$store.state)
-      debugger
       if (this.$store.state.authenticated === true) {
         requestHeaders['Authorization'] = 'Token ' + this.$store.state.token
       } else {

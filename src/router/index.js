@@ -4,6 +4,7 @@ import Hello from '@/components/Hello'
 import Login from '@/components/Login'
 import Logout from '@/components/Logout'
 import SurveyList from '@/components/SurveyList'
+import SurveyCreate from '@/components/SurveyCreate'
 import SurveyDetail from '@/components/SurveyDetail'
 import QuestionDetail from '@/components/QuestionDetail'
 
@@ -30,6 +31,11 @@ export default new Router({
       path: '/surveys',
       name: 'SurveyList',
       component: SurveyList
+    },
+    {
+      path: '/surveys/create',
+      name: 'SurveyCreate',
+      component: SurveyCreate
     },
     {
       path: '/survey/:id',

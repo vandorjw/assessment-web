@@ -1,17 +1,12 @@
 <template>
-  <div v-if="question">
-    <form v-on:submit.prevent="submitAnswer" method="post">
-      <label for="answer">{{ question.translations.en.question }}</label>
-      <input
-        type="text"
-        name="answer"
-        v-model="answer"
-      >
+  <div v-if="this.$store.state.authenticated==true">
+    <form v-on:submit.prevent="createSurvey" method="post">
+      <input type="text" name="name" placeholder="Survey Name">
       <input type="submit" value="submit">
     </form>
   </div>
   <div v-else>
-    <p>Either Question does not exist or you are not authorized to see it</p>
+    <router-link :to="{ name: 'Login'}">please log in</router-link>
   </div>
 </template>
 
@@ -19,31 +14,28 @@
 import axios from 'axios'
 
 export default {
-  props: ['id'],
   data () {
     return {
-      question: null,
-      answer: null,
+      survey: null,
       error: []
     }
   },
-  created () {
-    this.getQuestionDetail()
-  },
+
   methods: {
-    getQuestionDetail () {
-      const url = 'http://localhost:8000/api/question/' + this.id + '/'
+    createSurvey () {
+      const url = 'http://localhost:8000/api/survey/create/'
+
       let requestHeaders = {}
 
       if (this.$store.state.authenticated === true) {
         requestHeaders['Authorization'] = 'Token ' + this.$store.state.token
       }
 
-      axios.get(url, {
+      axios.post(url, {
         headers: requestHeaders
       })
       .then((response) => {
-        this.question = response.data
+        this.survey = response.data
       })
       .catch((error) => {
         if (error.response) {
@@ -53,9 +45,6 @@ export default {
           console.log(error.response.headers)
         }
       })
-    },
-    submitAnswer () {
-      console.log('submitAnswer stub: ' + this.answer)
     }
   }
 }

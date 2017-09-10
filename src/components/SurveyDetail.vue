@@ -51,8 +51,8 @@ export default {
 
       let requestHeaders = {}
 
-      if (this.$store.authenticated === true) {
-        requestHeaders['Authorization'] = 'Token' + this.$store.token
+      if (this.$store.state.authenticated === true) {
+        requestHeaders['Authorization'] = 'Token ' + this.$store.state.token
       }
 
       axios.get(url, {
