@@ -1,6 +1,9 @@
 <template>
   <div>
     <v-header></v-header>
+    <div v-if="this.$store.state.authenticated === true">
+      <router-link :to="{ name: 'SurveyCreate'}">create</router-link>
+    </div>
     <ul>
       <li v-for="survey in surveys">
         <router-link :to="{ name: 'SurveyDetail', params: { id: survey._uid }}">{{ survey.translations.en.name }}</router-link>
