@@ -10,14 +10,12 @@ export default {
   registration (creds, redirect) {
     axios.post(REGISTRATION_URL, creds)
     .then((response) => {
-      console.log(response.data)
       store.commit('authenticate', response.data.key)
     })
     .catch((error) => {
       if (error.response) {
         console.log(error.response.data)
         console.log(error.response.status)
-        console.log(error.response.headers)
       }
     })
   },
@@ -25,14 +23,12 @@ export default {
   login (creds, redirect) {
     axios.post(LOGIN_URL, creds)
     .then((response) => {
-      console.log(response.data)
       store.commit('authenticate', response.data.key)
     })
     .catch((error) => {
       if (error.response) {
         console.log(error.response.data)
         console.log(error.response.status)
-        console.log(error.response.headers)
       }
     })
   },
@@ -46,7 +42,6 @@ export default {
       if (error.response) {
         console.log(error.response.data)
         console.log(error.response.status)
-        console.log(error.response.headers)
       }
     })
   },
