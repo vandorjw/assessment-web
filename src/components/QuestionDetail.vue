@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     getQuestionDetail () {
-      const url = process.env.API_HOST + 'api/question/' + this.id + '/'
+      const url = process.env.API_HOST + '/api/question/' + this.id + '/'
       let requestHeaders = {}
 
       if (this.$store.state.authenticated === true) {

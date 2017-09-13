@@ -2,9 +2,9 @@ import axios from 'axios'
 import store from '../store/store'
 
 const API_URL = process.env.API_HOST
-const LOGIN_URL = API_URL + 'rest-auth/login/'
-const LOGOUT_URL = API_URL + 'rest-auth/logout/'
-const REGISTRATION_URL = API_URL + 'rest-auth/registration/'
+const LOGIN_URL = API_URL + '/rest-auth/login/'
+const LOGOUT_URL = API_URL + '/rest-auth/logout/'
+const REGISTRATION_URL = API_URL + '/rest-auth/registration/'
 
 export default {
   registration (creds, redirect) {

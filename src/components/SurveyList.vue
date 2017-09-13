@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     getSurveyList () {
-      const url = process.env.API_HOST + 'api/survey/'
+      const url = process.env.API_HOST + '/api/survey/'
 
       let requestHeaders = {}
 
