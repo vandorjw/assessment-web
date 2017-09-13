@@ -5,7 +5,14 @@
       <p>You are already authenticated</p>
     </div>
     <div v-else>
-      <form v-on:submit.prevent="loginUser" method="post">
+      <form v-on:submit.prevent="registerUser" method="post">
+        <label for="username">Email</label>
+        <input
+          type="email"
+          name="username"
+          placeholder="Enter your username"
+          v-model="credentials.email"
+        >
         <label for="username">Username</label>
         <input
           type="text"
@@ -17,10 +24,17 @@
         <input
           type="password"
           name="password"
-          placeholder="Enter your password"
-          v-model="credentials.password"
+          placeholder="Enter a password"
+          v-model="credentials.password1"
         >
-        <input type="submit" value="login">
+        <label for="password">Confirm Password</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="Confirm the password"
+          v-model="credentials.password2"
+        >
+        <input type="submit" value="Register">
       </form>
     </div>
   </div>
@@ -37,20 +51,24 @@ export default {
     return {
       credentials: {
         username: '',
-        password: ''
+        email: '',
+        password1: '',
+        password2: ''
       },
       error: ''
     }
   },
   methods: {
-    loginUser: function () {
+    registerUser: function () {
       var credentials = {
         username: this.credentials.username,
-        password: this.credentials.password
+        email: this.credentials.email,
+        password1: this.credentials.password1,
+        password2: this.credentials.password2
       }
       // We need to pass the component's this context
       // to properly make use of http in the auth service
-      auth.login(credentials, 'redirect-url')
+      auth.registration(credentials, 'redirect-url')
     }
   }
 }

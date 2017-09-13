@@ -54,7 +54,7 @@ export default {
 
     },
     getSurveyDetail () {
-      const url = 'http://localhost:8000/api/survey/' + this.id
+      const url = process.env.API_HOST + '/api/survey/' + this.id
 
       let requestHeaders = {}
 

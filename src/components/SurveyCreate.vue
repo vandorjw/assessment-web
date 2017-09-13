@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     createSurvey () {
-      const url = 'http://localhost:8000/api/survey/create/'
+      const url = process.env.API_HOST + '/api/survey/create/'
 
       let requestHeaders = {}
 

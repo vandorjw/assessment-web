@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Login from '@/components/Login'
 import Logout from '@/components/Logout'
+import Registration from '@/components/Registration'
 import SurveyList from '@/components/SurveyList'
 import SurveyCreate from '@/components/SurveyCreate'
 import SurveyDetail from '@/components/SurveyDetail'
@@ -26,6 +27,11 @@ export default new Router({
       path: '/logout',
       name: 'Logout',
       component: Logout
+    },
+    {
+      path: '/registration',
+      name: 'Registration',
+      component: Registration
     },
     {
       path: '/surveys',
