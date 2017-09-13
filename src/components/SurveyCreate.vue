@@ -1,26 +1,33 @@
 <template>
-  <div v-if="this.$store.state.authenticated==true">
-    <form v-on:submit.prevent="createSurvey" method="post">
-      <label for="name">Survey Name</label>
-      <input type="text" name="name" v-model="survey.translations.en.name">
-      <label for="description">Survey Description</label>
-      <input type="text" name="description" v-model="survey.translations.en.description">
-      <label for="is_active">publish</label>
-      <input type="checkbox" name="is_active" checked v-model="survey.is_active">
-      <label for="start_date_time">date of publication</label>
-      <input type="datetime-local" name="start_date_time" v-model="survey.start_date_time">
-      <input type="submit" value="submit">
-    </form>
-  </div>
-  <div v-else>
-    <router-link :to="{ name: 'Login'}">please log in</router-link>
+  <div>
+    <v-header></v-header>
+    <div v-if="this.$store.state.authenticated==true">
+      <form v-on:submit.prevent="createSurvey" method="post">
+        <label for="name">Survey Name</label>
+        <input type="text" name="name" v-model="survey.translations.en.name">
+        <label for="description">Survey Description</label>
+        <input type="text" name="description" v-model="survey.translations.en.description">
+        <label for="is_active">publish</label>
+        <input type="checkbox" name="is_active" checked v-model="survey.is_active">
+        <label for="start_date_time">date of publication</label>
+        <input type="datetime-local" name="start_date_time" v-model="survey.start_date_time">
+        <input type="submit" value="submit">
+      </form>
+    </div>
+    <div v-else>
+      <router-link :to="{ name: 'Login'}">please log in</router-link>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Header from './Header'
 
 export default {
+  components: {
+    'v-header': Header
+  },
   data () {
     return {
       error: [],
