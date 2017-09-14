@@ -56,7 +56,9 @@ export default {
     getSurveyDetail () {
       const url = process.env.API_HOST + '/api/survey/' + this.id
 
-      let requestHeaders = {}
+      let requestHeaders = {
+        'Accept-Language': this.$store.state.language
+      }
 
       if (this.$store.state.authenticated === true) {
         requestHeaders['Authorization'] = 'Token ' + this.$store.state.token

@@ -44,9 +44,5 @@ export default {
         console.log(error.response.status)
       }
     })
-  },
-
-  getAuthHeaderValue () {
-    return 'Token ' + sessionStorage.getItem('dj_token')
   }
 }

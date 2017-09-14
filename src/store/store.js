@@ -7,11 +7,13 @@ export default new Vuex.Store({
   strict: true,
   state: {
     authenticated: false,
-    token: null
+    token: null,
+    language: 'en'
   },
   getters: {
     authenticated: state => state.authenticated,
-    token: state => state.token
+    token: state => state.token,
+    language: state => state.language
   },
   mutations: {
     authenticate (state, payload) {
@@ -21,6 +23,9 @@ export default new Vuex.Store({
     deauthenticate (state) {
       state.authenticated = false
       state.token = null
+    },
+    setlanguage (state, payload) {
+      state.language = payload
     }
   },
   actions: {
@@ -29,6 +34,9 @@ export default new Vuex.Store({
     },
     deauthenticate (context) {
       context.commit('deauthenticate')
+    },
+    setlanguage (context) {
+      context.commit('setlanguage')
     }
   }
 })
