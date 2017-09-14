@@ -5,14 +5,7 @@
       <p>You are already authenticated</p>
     </div>
     <div v-else>
-      <form v-on:submit.prevent="registerUser" method="post">
-        <label for="username">Email</label>
-        <input
-          type="email"
-          name="username"
-          placeholder="Enter your username"
-          v-model="credentials.email"
-        >
+      <form v-on:submit.prevent="loginUser" method="post">
         <label for="username">Username</label>
         <input
           type="text"
@@ -24,25 +17,18 @@
         <input
           type="password"
           name="password"
-          placeholder="Enter a password"
-          v-model="credentials.password1"
+          placeholder="Enter your password"
+          v-model="credentials.password"
         >
-        <label for="password">Confirm Password</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="Confirm the password"
-          v-model="credentials.password2"
-        >
-        <input type="submit" value="Register">
+        <input type="submit" value="login">
       </form>
     </div>
   </div>
 </template>
 
 <script>
-import Header from './Header'
-import auth from '../service/auth'
+import Header from '../../blocks/HeaderBlock/Header'
+import auth from '../../../service/auth'
 export default {
   components: {
     'v-header': Header
@@ -51,24 +37,20 @@ export default {
     return {
       credentials: {
         username: '',
-        email: '',
-        password1: '',
-        password2: ''
+        password: ''
       },
       error: ''
     }
   },
   methods: {
-    registerUser: function () {
+    loginUser: function () {
       var credentials = {
         username: this.credentials.username,
-        email: this.credentials.email,
-        password1: this.credentials.password1,
-        password2: this.credentials.password2
+        password: this.credentials.password
       }
       // We need to pass the component's this context
       // to properly make use of http in the auth service
-      auth.registration(credentials, 'redirect-url')
+      auth.login(credentials, 'redirect-url')
     }
   }
 }

@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Header from './Header'
+import Header from '../../blocks/HeaderBlock/Header'
 export default {
   name: 'hello',
   components: {

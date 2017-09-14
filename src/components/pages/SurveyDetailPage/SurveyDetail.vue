@@ -33,7 +33,7 @@
 
 <script>
 import axios from 'axios'
-import Header from './Header'
+import Header from '../../blocks/HeaderBlock/Header'
 
 export default {
   components: {

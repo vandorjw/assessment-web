@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
-import Login from '@/components/Login'
-import Logout from '@/components/Logout'
-import Registration from '@/components/Registration'
-import SurveyList from '@/components/SurveyList'
-import SurveyCreate from '@/components/SurveyCreate'
-import SurveyDetail from '@/components/SurveyDetail'
-import QuestionDetail from '@/components/QuestionDetail'
+import Hello from '@/components/pages/HelloPage/Hello'
+import Login from '@/components/pages/LoginPage/Login'
+import Logout from '@/components/pages/LogoutPage/Logout'
+import Registration from '@/components/pages/RegistrationPage/Registration'
+import SurveyList from '@/components/pages/SurveyListPage/SurveyList'
+import SurveyCreate from '@/components/pages/SurveyCreatePage/SurveyCreate'
+import SurveyDetail from '@/components/pages/SurveyDetailPage/SurveyDetail'
+import QuestionDetail from '@/components/pages/QuestionDetailPage/QuestionDetail'
 
 Vue.use(Router)
 

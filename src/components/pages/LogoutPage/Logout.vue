@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import auth from '../service/auth'
-import Header from './Header'
+import Header from '../../blocks/HeaderBlock/Header'
+import auth from '../../../service/auth'
 export default {
   components: {
     'v-header': Header
