@@ -2,23 +2,41 @@
   <div>
     <v-header></v-header>
     <div v-if="this.$store.state.authenticated==true">
-      <form v-on:submit.prevent="createSurvey" method="post">
-        <label for="name">Survey Name</label>
-        <input type="text" name="name" v-model="survey.translations.en.name">
-        <label for="description">Survey Description</label>
-        <input type="text" name="description" v-model="survey.translations.en.description">
-        <label for="is_active">publish</label>
-        <input type="checkbox" name="is_active" checked v-model="survey.is_active">
-        <label for="start_date_time">date of publication</label>
-        <input type="datetime-local" name="start_date_time" v-model="survey.start_date_time">
-        <input type="submit" value="submit">
-      </form>
+      <b-form v-on:submit.prevent="onSubmit">
+        <b-form-group id="nameInputGroup" label="Survey Name:" label-for="name" description="The name of the survey.">
+          <b-form-input id="nameInput" type="text" name="name" v-model="survey.translations.en.name" required>
+          </b-form-input>
+        </b-form-group>
+        <b-form-group id="descriptionInputGroup" label="Survey Description:" label-for="description">
+          <b-form-input id="descriptionInput" type="text" name="description" v-model="survey.translations.en.description" required>
+          </b-form-input>
+        </b-form-group>
+
+        <b-form-group id="is_activeInputGroup" label="is_active:" label-for="is_active">
+          <b-form-checkbox id="is_activeInput" name="is_active" v-model="survey.is_active">
+          </b-form-checkbox>
+        </b-form-group>
+
+        <b-form-group id="is_privateInputGroup" label="is_private:" label-for="is_private">
+          <b-form-checkbox id="is_privateInput" name="is_private" v-model="survey.is_private">
+          </b-form-checkbox>
+        </b-form-group>
+
+        <b-form-group id="start_date_timeInputGroup" label="Survey Start Time:" label-for="start_date_time">
+          <b-form-input id="start_date_timeInput" type="datetime-local" name="start_date_time" v-model="survey.start_date_time">
+          </b-form-input>
+        </b-form-group>
+
+        <b-button type="submit" variant="primary">Submit</b-button>
+        <b-button type="reset" variant="secondary">Reset</b-button>
+      </b-form>
     </div>
     <div v-else>
       <router-link :to="{ name: 'Login'}">please log in</router-link>
     </div>
   </div>
 </template>
+
 
 <script>
 import axios from 'axios'
@@ -34,17 +52,18 @@ export default {
       survey: {
         translations: {
           en: {
-            name: 'Hello World2',
-            description: 'How do I say; "Hello world", in English?'
+            name: '',
+            description: ''
           }
         },
         is_active: true,
+        is_private: false,
         start_date_time: '2017-07-31T05:09:38.460803Z'
       }
     }
   },
   methods: {
-    createSurvey () {
+    onSubmit () {
       const url = process.env.API_HOST + '/api/survey/create/'
 
       let requestHeaders = {
@@ -61,7 +80,9 @@ export default {
         headers: requestHeaders
       })
       .then((response) => {
-        this.survey = response.data
+        console.log(response.data)
+        console.log(response.status)
+        this.$router.push({name: 'SurveyList'})
       })
       .catch((error) => {
         if (error.response) {
