@@ -2,18 +2,15 @@
   <div>
     <v-header></v-header>
     <div v-if="survey">
+      <pre>name: {{ survey.name }}</pre>
+      <pre>description: {{ survey.description }}</pre>
       <pre>is_active: {{ survey.is_active }}</pre>
       <pre>is_private: {{ survey.is_private }}</pre>
+      <pre>is_admin: {{ survey.is_admin }}</pre>
+      <pre>in_users: {{ survey.in_users }}</pre>
       <pre>start_date_time: {{ survey.start_date_time }}</pre>
       <pre>end_date_time: {{ survey.end_date_time }}</pre>
-      <pre>admin: {{ survey.admin }}</pre>
-      <pre>users: {{ survey.users }}</pre>
-      <ul>
-        <li v-for="lang in survey.translations">
-          <pre>name: {{ lang.name }}</pre>
-          <pre>description: {{ lang.description }}</pre>
-        </li>
-      </ul>
+
       <div v-if="survey">
         <form v-on:submit.prevent="startSurvey" method="post">
           <input type="submit" value="submit">
