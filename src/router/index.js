@@ -6,6 +6,7 @@ import Logout from '@/components/pages/LogoutPage/Logout'
 import Registration from '@/components/pages/RegistrationPage/Registration'
 import SurveyList from '@/components/pages/SurveyListPage/SurveyList'
 import SurveyCreate from '@/components/pages/SurveyCreatePage/SurveyCreate'
+import SurveyUpdate from '@/components/pages/SurveyUpdatePage/SurveyUpdate'
 import SurveyDetail from '@/components/pages/SurveyDetailPage/SurveyDetail'
 import QuestionDetail from '@/components/pages/QuestionDetailPage/QuestionDetail'
 
@@ -34,19 +35,25 @@ export default new Router({
       component: Registration
     },
     {
-      path: '/surveys',
+      path: '/survey/list',
       name: 'SurveyList',
       component: SurveyList
     },
     {
-      path: '/surveys/create',
+      path: '/survey/create',
       name: 'SurveyCreate',
       component: SurveyCreate
     },
     {
-      path: '/survey/:id',
+      path: '/survey/get/:id',
       name: 'SurveyDetail',
       component: SurveyDetail,
+      props: true
+    },
+    {
+      path: '/survey/update/:id',
+      name: 'SurveyUpdate',
+      component: SurveyUpdate,
       props: true
     },
     {

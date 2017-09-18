@@ -11,6 +11,10 @@
       <pre>start_date_time: {{ survey.start_date_time }}</pre>
       <pre>end_date_time: {{ survey.end_date_time }}</pre>
 
+      <div v-if="survey.is_admin===true">
+        <router-link :to="{ name: 'SurveyUpdate', params: { id: survey._uid }}">Edit Survey</router-link>
+      </div>
+
       <div v-if="survey">
         <form v-on:submit.prevent="startSurvey" method="post">
           <input type="submit" value="submit">
