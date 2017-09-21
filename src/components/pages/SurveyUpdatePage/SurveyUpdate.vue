@@ -54,7 +54,7 @@ export default {
     return {
       error: [],
       survey: {
-        _uid: this.id,
+        id: this.id,
         translations: {
           en: {
             name: '',
@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     onSubmit () {
-      const url = process.env.API_HOST + '/api/survey/create/'
+      const url = process.env.API_HOST + '/api/survey/update/' + this.survey.id + '/'
 
       let requestHeaders = {
         'Accept-Language': this.$store.state.language
@@ -81,7 +81,7 @@ export default {
         console.log('Auth Token not set!')
       }
 
-      axios.post(url, this.survey, {
+      axios.put(url, this.survey, {
         headers: requestHeaders
       })
       .then((response) => {
