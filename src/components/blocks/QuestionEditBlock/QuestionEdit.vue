@@ -59,7 +59,7 @@ export default {
       .then((response) => {
         console.log(response.data)
         console.log(response.status)
-        this.$router.push({name: 'SurveyList'})
+        // this.$router.push({name: 'SurveyList'})
       })
       .catch((error) => {
         if (error.response) {

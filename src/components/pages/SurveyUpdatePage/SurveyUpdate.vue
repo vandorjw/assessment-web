@@ -1,6 +1,5 @@
 <template>
   <div>
-    <v-header></v-header>
     <div v-if="this.$store.state.authenticated==true">
       <b-form v-on:submit.prevent="onSubmit">
         <b-form-group id="nameInputGroup" label="Survey Name:" label-for="name" description="The name of the survey.">
@@ -41,12 +40,10 @@
 
 <script>
 import axios from 'axios'
-import Header from '../../blocks/HeaderBlock/Header'
 import QuestionEdit from '../../blocks/QuestionEditBlock/QuestionEdit'
 
 export default {
   components: {
-    'v-header': Header,
     'v-question': QuestionEdit
   },
   props: ['id'],

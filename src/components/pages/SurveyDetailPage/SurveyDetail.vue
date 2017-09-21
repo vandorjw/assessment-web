@@ -1,6 +1,5 @@
 <template>
   <div>
-    <v-header></v-header>
     <div v-if="survey">
       <pre>name: {{ survey.name }}</pre>
       <pre>description: {{ survey.description }}</pre>
@@ -34,12 +33,8 @@
 
 <script>
 import axios from 'axios'
-import Header from '../../blocks/HeaderBlock/Header'
 
 export default {
-  components: {
-    'v-header': Header
-  },
   props: ['id'],
   data () {
     return {

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <v-header></v-header>
     <ul>
       <li v-for="survey in surveys">
         <router-link :to="{ name: 'SurveyDetail', params: { id: survey._uid }}">{{ survey.name }}</router-link>
@@ -11,12 +10,9 @@
 
 <script>
 import axios from 'axios'
-import Header from '../../blocks/HeaderBlock/Header'
 
 export default {
-  components: {
-    'v-header': Header
-  },
+
   data () {
     return {
       surveys: [],

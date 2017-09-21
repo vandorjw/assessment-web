@@ -1,6 +1,5 @@
 <template>
   <div id="login-page">
-    <v-header></v-header>
     <div v-if="this.$store.state.authenticated==true">
       <p>You are already authenticated</p>
     </div>
@@ -41,12 +40,8 @@
 </template>
 
 <script>
-import Header from '../../blocks/HeaderBlock/Header'
 import auth from '../../../service/auth'
 export default {
-  components: {
-    'v-header': Header
-  },
   data () {
     return {
       credentials: {

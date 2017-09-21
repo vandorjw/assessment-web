@@ -1,6 +1,5 @@
 <template>
   <div class="hello">
-    <v-header></v-header>
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -22,12 +21,8 @@
 </template>
 
 <script>
-import Header from '../../blocks/HeaderBlock/Header'
 export default {
   name: 'hello',
-  components: {
-    'v-header': Header
-  },
   data () {
     return {
       msg: 'Welcome to Assessment App'
