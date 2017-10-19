@@ -10,19 +10,29 @@
       <pre>start_date_time: {{ survey.start_date_time }}</pre>
       <pre>end_date_time: {{ survey.end_date_time }}</pre>
 
-      <ol>
-        <li v-for="question in survey.questions">
-          <router-link :to="{ name: 'QuestionDetail', params: { id: question._uid }}">{{ question.translations.en.question }}</router-link>
-        </li>
-      </ol>
-
       <div v-if="survey.is_admin===true">
         <router-link :to="{ name: 'SurveyUpdate', params: { id: survey._uid }}">Edit Survey</router-link>
       </div>
 
-      <form v-on:submit.prevent="startSurvey" method="post">
-        <input type="submit" value="submit">
-      </form>
+      <div v-if="survey.user_survey_status === 'unstarted'">
+        <pre>Survey is unstarted</pre>
+        <b-button :to="{ name: 'Hello'}">Start Survey</b-button>
+      </div>
+
+      <div v-if="survey.user_survey_status === 'incomplete'">
+        <pre>Survey is incomplete</pre>
+        <b-button :to="{ name: 'Hello'}">Continue Survey</b-button>
+        <ol>
+          <li v-for="question in survey.questions">
+            <router-link :to="{ name: 'QuestionDetail', params: { id: question._uid }}">{{ question.question }}</router-link>
+          </li>
+        </ol>
+      </div>
+
+      <div v-if="survey.user_survey_status === 'complete'">
+        <pre>Survey is complete</pre>
+        <b-button :to="{ name: 'Hello'}">See Result</b-button>
+      </div>
 
     </div>
     <div v-else>

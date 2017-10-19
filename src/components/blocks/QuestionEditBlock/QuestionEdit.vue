@@ -35,7 +35,7 @@ export default {
           }
         },
         is_required: true,
-        of_type: 3
+        of_type: 'txt'
       }
     }
   },
