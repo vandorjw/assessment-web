@@ -26,7 +26,6 @@ export default {
   },
   methods: {
     formSubmitAction: function (formData) {
-      console.log('Received formSubmission event!')
       const url = process.env.API_HOST + '/api/survey/create/'
 
       let requestHeaders = {

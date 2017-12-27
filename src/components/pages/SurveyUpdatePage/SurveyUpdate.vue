@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="this.$store.state.authenticated==true">
-       <v-surveyform></v-surveyform>
+       <v-surveyform v-on:formSubmission="formSubmitAction" :survey_id=this.id></v-surveyform>
        <hr />
        <b-btn v-b-modal="'addQuestionModal'">Add Question</b-btn>
        <b-modal id="addQuestionModal">
@@ -44,7 +44,7 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
+    formSubmitAction (formData) {
       const url = process.env.API_HOST + '/api/survey/update/' + this.survey.id + '/'
 
       let requestHeaders = {
@@ -57,7 +57,7 @@ export default {
         console.log('Auth Token not set!')
       }
 
-      axios.put(url, this.survey, {
+      axios.put(url, formData, {
         headers: requestHeaders
       })
       .then((response) => {

@@ -67,8 +67,11 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'SurveyForm',
+  props: ['survey_id'],
   data: function () {
     return {
       error: [],
@@ -97,11 +100,43 @@ export default {
       }
     }
   },
+  created: function () {
+    console.log('survey_id is: ' + this.survey_id)
+    if (this.survey_id) {
+      this.getSurveyDetail()
+    }
+  },
   methods: {
     formSubmitAction: function () {
       console.log('Emit formSubmission event!')
       console.log(this.survey)
       this.$emit('formSubmission', this.survey)
+    },
+    getSurveyDetail () {
+      const url = process.env.API_HOST + '/api/survey/' + this.survey_id
+
+      let requestHeaders = {
+        'Accept-Language': this.$store.state.language
+      }
+
+      if (this.$store.state.authenticated === true) {
+        requestHeaders['Authorization'] = 'Token ' + this.$store.state.token
+      }
+
+      axios.get(url, {
+        headers: requestHeaders
+      })
+      .then((response) => {
+        this.survey = response.data
+      })
+      .catch((error) => {
+        if (error.response) {
+          this.error = error.response.data
+          console.log(error.response.data)
+          console.log(error.response.status)
+          console.log(error.response.headers)
+        }
+      })
     }
   }
 }
