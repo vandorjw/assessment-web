@@ -1,5 +1,5 @@
 <template>
-<b-form v-on:submit.prevent="onSubmit">
+<b-form v-on:submit.prevent="formSubmitAction">
 
   <b-card no-body>
     <b-tabs card no-fade>
@@ -69,7 +69,7 @@
 <script>
 export default {
   name: 'SurveyForm',
-  data () {
+  data: function () {
     return {
       error: [],
       survey: {
@@ -93,8 +93,15 @@ export default {
         },
         is_active: true,
         is_private: false,
-        start_date_time: '2017-07-31T05:09:38.460803Z'
+        start_date_time: '2000-01-01T00:00:00.000000Z'
       }
+    }
+  },
+  methods: {
+    formSubmitAction: function () {
+      console.log('Emit formSubmission event!')
+      console.log(this.survey)
+      this.$emit('formSubmission', this.survey)
     }
   }
 }

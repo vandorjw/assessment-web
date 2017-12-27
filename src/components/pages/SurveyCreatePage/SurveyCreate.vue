@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="this.$store.state.authenticated==true">
-      <v-surveyform></v-surveyform>
+      <v-surveyform v-on:formSubmission="formSubmitAction"></v-surveyform>
     </div>
     <div v-else>
       <router-link :to="{ name: 'Login'}">please log in</router-link>
@@ -25,7 +25,8 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
+    formSubmitAction: function (formData) {
+      console.log('Received formSubmission event!')
       const url = process.env.API_HOST + '/api/survey/create/'
 
       let requestHeaders = {
@@ -38,7 +39,7 @@ export default {
         console.log('Auth Token not set!')
       }
 
-      axios.post(url, this.survey, {
+      axios.post(url, formData, {
         headers: requestHeaders
       })
       .then((response) => {
