@@ -7,15 +7,15 @@
 
       <b-collapse is-nav id="nav_collapse">
 
-        <b-nav is-nav-bar>
+        <b-navbar-nav>
           <b-nav-item-dropdown text="Survey">
             <b-dropdown-item :to="{ name: 'SurveyList'}">List</b-dropdown-item>
             <b-dropdown-item v-if="this.$store.state.authenticated===true" :to="{ name: 'SurveyCreate'}">Create</b-dropdown-item>
           </b-nav-item-dropdown>
-        </b-nav>
+        </b-navbar-nav>
 
         <!-- Right aligned nav items -->
-        <b-nav is-nav-bar class="ml-auto">
+        <b-navbar-nav class="ml-auto">
 
           <b-nav-item-dropdown text="Lang" right>
             <b-dropdown-item href="#">English</b-dropdown-item>
@@ -40,7 +40,7 @@
             <b-dropdown-item :to="{ name: 'Registration'}">Register</b-dropdown-item>
             <b-dropdown-item :to="{ name: 'Login'}">Login</b-dropdown-item>
           </b-nav-item-dropdown>
-        </b-nav>
+        </b-navbar-nav>
 
       </b-collapse>
     </b-navbar>
