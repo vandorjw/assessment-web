@@ -5,11 +5,11 @@
     <b-tabs card no-fade>
       <b-tab title="English" active>
         <b-form-group id="englishNameInputGroup" label="English Survey Name:" label-for="en-name" description="The name of the survey in english.">
-          <b-form-input id="englishNameInput" type="text" name="en-name" v-model="survey.translations.en.name" required>
+          <b-form-input id="englishNameInput" type="text" name="en-name" v-model="survey.translations.en.name">
           </b-form-input>
         </b-form-group>
         <b-form-group id="englishDescriptionInputGroup" label="English Survey Description:" label-for="en-description">
-          <b-form-input id="englishDescriptionInput" type="text" name="en-description" v-model="survey.translations.en.description" required>
+          <b-form-input id="englishDescriptionInput" type="text" name="en-description" v-model="survey.translations.en.description">
           </b-form-input>
         </b-form-group>
       </b-tab>
@@ -78,20 +78,20 @@ export default {
       survey: {
         translations: {
           en: {
-            name: '',
-            description: ''
+            name: null,
+            description: null
           },
           nl: {
-            name: '',
-            description: ''
+            name: null,
+            description: null
           },
           fr: {
-            name: '',
-            description: ''
+            name: null,
+            description: null
           },
           de: {
-            name: '',
-            description: ''
+            name: null,
+            description: null
           }
         },
         is_active: true,
@@ -101,15 +101,25 @@ export default {
     }
   },
   created: function () {
-    console.log('survey_id is: ' + this.survey_id)
     if (this.survey_id) {
       this.getSurveyDetail()
     }
   },
   methods: {
     formSubmitAction: function () {
-      console.log('Emit formSubmission event!')
-      console.log(this.survey)
+      for (let key in this.survey.translations) {
+        // skip loop if the property is from prototype
+        if (!this.survey.translations.hasOwnProperty(key)) {
+          continue
+        }
+
+        let obj = this.survey.translations[key]
+        if (obj.name != null || obj.description != null) {
+          continue
+        } else {
+          delete this.survey.translations[key]
+        }
+      }
       this.$emit('formSubmission', this.survey)
     },
     getSurveyDetail () {
@@ -127,6 +137,14 @@ export default {
         headers: requestHeaders
       })
       .then((response) => {
+        for (let key in this.survey.translations) {
+          if (!(response.data.translations.hasOwnProperty(key))) {
+            response.data.translations[key] = {
+              name: null,
+              description: null
+            }
+          }
+        }
         this.survey = response.data
       })
       .catch((error) => {
