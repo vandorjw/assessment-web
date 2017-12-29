@@ -9,6 +9,7 @@ import SurveyCreate from '@/components/pages/SurveyCreatePage/SurveyCreate'
 import SurveyUpdate from '@/components/pages/SurveyUpdatePage/SurveyUpdate'
 import SurveyDetail from '@/components/pages/SurveyDetailPage/SurveyDetail'
 import QuestionDetail from '@/components/pages/QuestionDetailPage/QuestionDetail'
+import ResultList from '@/components/pages/ResultListPage/ResultList'
 
 Vue.use(Router)
 
@@ -61,6 +62,11 @@ export default new Router({
       name: 'QuestionDetail',
       component: QuestionDetail,
       props: true
+    },
+    {
+      path: '/result/list',
+      name: 'ResultList',
+      component: ResultList
     }
   ]
 })
