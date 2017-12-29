@@ -14,24 +14,24 @@
         <router-link :to="{ name: 'SurveyUpdate', params: { id: survey._uid }}">Edit Survey</router-link>
       </div>
 
-      <div v-if="survey.user_survey_status === 'unstarted'">
+      <div v-if="survey.result.status === 'unstarted'">
         <pre>Survey is unstarted</pre>
-        <b-button :to="{ name: 'Hello'}">Start Survey</b-button>
+        <b-button v-on:click="startSurvey">Start Survey</b-button>
       </div>
 
-      <div v-if="survey.user_survey_status === 'incomplete'">
+      <div v-if="survey.result.status === 'incomplete'">
         <pre>Survey is incomplete</pre>
-        <b-button :to="{ name: 'Hello'}">Continue Survey</b-button>
+        <b-button :to="{ name: 'ResultDetail', params: { id: survey.result.response_id }}">Continue Survey</b-button>
         <ol>
           <li v-for="question in survey.questions">
-            <router-link :to="{ name: 'QuestionDetail', params: { id: question._uid }}">{{ question.question }}</router-link>
+            <router-link :to="{ name: 'QuestionDetail', params: { id: question._uid }}">{{ question.text }}</router-link>
           </li>
         </ol>
       </div>
 
-      <div v-if="survey.user_survey_status === 'complete'">
+      <div v-if="survey.result.status === 'complete'">
         <pre>Survey is complete</pre>
-        <b-button :to="{ name: 'Hello'}">See Result</b-button>
+        <b-button :to="{ name: 'ResultDetail', params: { id: survey.result.response_id }}">See Result</b-button>
       </div>
 
     </div>
@@ -49,6 +49,7 @@ export default {
   data () {
     return {
       survey: null,
+      result: null,
       error: []
     }
   },
@@ -71,7 +72,8 @@ export default {
         headers: requestHeaders
       })
       .then((response) => {
-        this.$router.push({name: 'Hello'})
+        console.log(response.data)
+        this.$router.push({name: 'ResultDetail', params: { id: response.data._uid }})
       })
       .catch((error) => {
         if (error.response) {

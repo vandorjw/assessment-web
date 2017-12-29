@@ -2,7 +2,7 @@
   <div>
     <ul>
       <li v-for="result in results">
-        <router-link :to="{ name: 'ResultDetail', params: { id: result._uid }}">{{ result.name }}</router-link>
+        <router-link :to="{ name: 'ResultDetail', params: { id: result._uid }}">{{ result._uid }}</router-link>
       </li>
     </ul>
   </div>
