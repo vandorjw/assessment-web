@@ -21,7 +21,7 @@
 
       <div v-if="survey.result.status === 'incomplete'">
         <pre>Survey is incomplete</pre>
-        <b-button :to="{ name: 'ResultDetail', params: { id: survey.result.response_id }}">Continue Survey</b-button>
+        <b-button :to="{ name: 'ResultDetail', params: { id: survey.result.result_id }}">Continue Survey</b-button>
         <ol>
           <li v-for="question in survey.questions">
             <router-link :to="{ name: 'QuestionDetail', params: { id: question._uid }}">{{ question.text }}</router-link>
@@ -31,7 +31,7 @@
 
       <div v-if="survey.result.status === 'complete'">
         <pre>Survey is complete</pre>
-        <b-button :to="{ name: 'ResultDetail', params: { id: survey.result.response_id }}">See Result</b-button>
+        <b-button :to="{ name: 'ResultDetail', params: { id: survey.result.result_id }}">See Result</b-button>
       </div>
 
     </div>
