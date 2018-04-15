@@ -9,8 +9,9 @@
 
         <b-navbar-nav>
           <b-nav-item-dropdown text="Survey">
-            <b-dropdown-item :to="{ name: 'SurveyList'}">List</b-dropdown-item>
+            <b-dropdown-item :to="{ name: 'SurveyList'}">Survey List</b-dropdown-item>
             <b-dropdown-item v-if="this.$store.state.authenticated===true" :to="{ name: 'SurveyCreate'}">Create</b-dropdown-item>
+            <b-dropdown-item :to="{ name: 'ResultList'}">Result List</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
 
