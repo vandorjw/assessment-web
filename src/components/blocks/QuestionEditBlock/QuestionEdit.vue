@@ -111,8 +111,6 @@ export default {
         }
       }
 
-      // this.$emit('formSubmission', this.question)
-
       axios.post(url, this.question, {
         headers: requestHeaders
       })
