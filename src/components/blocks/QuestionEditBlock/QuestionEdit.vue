@@ -97,6 +97,22 @@ export default {
         console.log('Auth Token not set!')
       }
 
+      for (let key in this.question.translations) {
+        // skip loop if the property is from prototype
+        if (!this.question.translations.hasOwnProperty(key)) {
+          continue
+        }
+
+        let obj = this.question.translations[key]
+        if (obj.question != null) {
+          continue
+        } else {
+          delete this.question.translations[key]
+        }
+      }
+
+      // this.$emit('formSubmission', this.question)
+
       axios.post(url, this.question, {
         headers: requestHeaders
       })
