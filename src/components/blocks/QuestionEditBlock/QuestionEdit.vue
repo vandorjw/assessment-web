@@ -2,44 +2,53 @@
   <div>
     <b-form v-on:submit.prevent="onSubmit">
 
-      <b-card no-body>
-        <b-tabs card no-fade>
-          <b-tab title="English" active>
-            <b-form-group label="Question:" label-for="en-question">
-              <b-form-input type="text" name="en-question" v-model="question.translations.en.question">
-              </b-form-input>
-            </b-form-group>
-          </b-tab>
-          <b-tab title="French">
-            <b-form-group label="Question:" label-for="fr-question">
-              <b-form-input type="text" name="fr-question" v-model="question.translations.fr.question">
-              </b-form-input>
-            </b-form-group>
-          </b-tab>
-          <b-tab title="Dutch">
-            <b-form-group label="Question:" label-for="nl-question">
-              <b-form-input type="text" name="nl-question" v-model="question.translations.nl.question">
-              </b-form-input>
-            </b-form-group>
-          </b-tab>
-          <b-tab title="German">
-            <b-form-group label="Question:" label-for="de-question">
-              <b-form-input type="text" name="de-question" v-model="question.translations.de.question">
-              </b-form-input>
-            </b-form-group>
-          </b-tab>
-        </b-tabs>
-      </b-card>
-
       <b-form-group id="is_requiredInputGroup" label="is_required:" label-for="is_required">
         <b-form-checkbox id="is_requiredInput" name="is_required" v-model="question.is_required">
         </b-form-checkbox>
       </b-form-group>
 
       <b-form-group label="of_type:" label-for="of_type">
-        <b-form-select v-model="question.of_type" :options="options" name="of_type">
+        <b-form-select v-model="question.of_type" :options="questionType" name="of_type">
         </b-form-select>
       </b-form-group>
+
+      <b-card no-body>
+        <b-tabs card no-fade>
+
+          <b-tab title="English" active>
+            <b-form-group label="Question:" label-for="en-question">
+              <b-form-input type="text" name="en-question" v-model="question.translations.en.question">
+              </b-form-input>
+            </b-form-group>
+            <v-choiceform></v-choiceform>
+          </b-tab>
+
+          <b-tab title="French">
+            <b-form-group label="Question:" label-for="fr-question">
+              <b-form-input type="text" name="fr-question" v-model="question.translations.fr.question">
+              </b-form-input>
+            </b-form-group>
+            <v-choiceform></v-choiceform>
+          </b-tab>
+
+          <b-tab title="Dutch">
+            <b-form-group label="Question:" label-for="nl-question">
+              <b-form-input type="text" name="nl-question" v-model="question.translations.nl.question">
+              </b-form-input>
+            </b-form-group>
+            <v-choiceform></v-choiceform>
+          </b-tab>
+
+          <b-tab title="German">
+            <b-form-group label="Question:" label-for="de-question">
+              <b-form-input type="text" name="de-question" v-model="question.translations.de.question">
+              </b-form-input>
+            </b-form-group>
+            <v-choiceform></v-choiceform>
+          </b-tab>
+
+        </b-tabs>
+      </b-card>
 
       <b-button type="submit" variant="primary">Submit</b-button>
       <b-button type="reset" variant="secondary">Reset</b-button>
@@ -51,7 +60,12 @@
 <script>
 import axios from 'axios'
 
+import ChoiceForm from '../ChoiceFormBlock/ChoiceForm'
+
 export default {
+  components: {
+    'v-choiceform': ChoiceForm
+  },
   props: ['survey_id'],
   data () {
     return {
@@ -75,15 +89,22 @@ export default {
         is_required: true,
         of_type: null
       },
-      options: [
+      questionType: [
         { value: null, text: 'Please select an option' },
         { value: 'tf', text: 'True/False' },
         { value: 'mc', text: 'Multiple Choice' },
         { value: 'txt', text: 'Text' }
+      ],
+      trueOrFalse: [
+        { value: true, text: 'True' },
+        { value: false, text: 'False' }
       ]
     }
   },
   methods: {
+    onClickAdd () {
+      console.log('Clicked')
+    },
     onSubmit () {
       const url = process.env.API_HOST + '/api/question/create/'
 
