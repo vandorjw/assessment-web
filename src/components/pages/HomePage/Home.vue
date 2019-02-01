@@ -1,14 +1,14 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
     <p>
     This is still a work in progress, but feel free to sign up and click around.
+    </p>
+    <p>
     The vision for this site is to make it easy to create questions that other people can answer.
     </p>
     <p>
     The source code is available <a href="https://github.com/vandorjw/django-assessment">here for the backend</a> and <a href="https://github.com/vandorjw/assessment-web">here for frontend</a>
     </p>
-
   </div>
 </template>
 

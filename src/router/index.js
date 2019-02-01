@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/pages/HelloPage/Hello'
+import Home from '@/components/pages/HomePage/Home'
 import Login from '@/components/pages/LoginPage/Login'
 import Logout from '@/components/pages/LogoutPage/Logout'
 import Registration from '@/components/pages/RegistrationPage/Registration'
@@ -18,8 +18,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      name: 'Home',
+      component: Home
     },
     {
       path: '/login',
