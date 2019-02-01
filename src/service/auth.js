@@ -12,7 +12,7 @@ export default {
     axios.post(REGISTRATION_URL, creds)
     .then((response) => {
       store.commit('authenticate', response.data.key)
-      router.push({name: 'Hello'})
+      router.push({name: 'Home'})
     })
     .catch((error) => {
       if (error.response) {
@@ -26,7 +26,7 @@ export default {
     axios.post(LOGIN_URL, creds)
     .then((response) => {
       store.commit('authenticate', response.data.key)
-      router.push({name: 'Hello'})
+      router.push({name: 'Home'})
     })
     .catch((error) => {
       if (error.response) {
@@ -40,7 +40,7 @@ export default {
     axios.post(LOGOUT_URL)
     .then((response) => {
       store.commit('deauthenticate')
-      router.push({name: 'Hello'})
+      router.push({name: 'Home'})
     })
     .catch((error) => {
       if (error.response) {
