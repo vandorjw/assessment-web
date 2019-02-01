@@ -5,8 +5,8 @@ assessment-web
 .. image:: https://travis-ci.org/vandorjw/assessment-web.svg?branch=master
     :target: https://travis-ci.org/vandorjw/assessment-web
     :alt: TravisCI Status
-.. image:: https://sonarcloud.io/api/project_badges/measure?project=vandorjw.django-assessment&metric=alert_status
-    :target: https://sonarcloud.io/dashboard?id=vandorjw.django-assessment
+.. image:: https://sonarcloud.io/api/project_badges/measure?project=com.github.vandorjw.assessment-web&metric=alert_status
+    :target: https://sonarcloud.io/dashboard?id=com.github.vandorjw.assessment-web
     :alt: Quality Gate Status
 .. image:: https://david-dm.org/vandorjw/assessment-web.svg
     :target: https://david-dm.org/vandorjw/assessment-web
@@ -23,7 +23,7 @@ Online resources
 Build Setup
 ================
 
-``` bash
+.. code::
 # install dependencies
 npm install
 
@@ -44,4 +44,4 @@ npm run e2e
 
 # run all tests
 npm test
-```
+
