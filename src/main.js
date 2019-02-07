@@ -13,6 +13,9 @@ Vue.use(store)
 import VueI18n from 'vue-i18n'
 Vue.use(VueI18n)
 
+import VueCookies from 'vue-cookies'
+Vue.use(VueCookies)
+
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'bootstrap/dist/css/bootstrap.css'
