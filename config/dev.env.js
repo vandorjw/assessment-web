@@ -3,5 +3,5 @@ var prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  API_HOST: JSON.stringify('http://api.assessment.localhost')
+  API_HOST: JSON.stringify('https://django-assessment.herokuapp.com')
 })
