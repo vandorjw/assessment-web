@@ -4,22 +4,28 @@
       <p>You are already authenticated</p>
     </div>
     <div v-else>
-      <form v-on:submit.prevent="loginUser" method="post">
+      <form
+        method="post"
+        @submit.prevent="loginUser"
+      >
         <label for="username">Username</label>
         <input
+          v-model="credentials.username"
           type="text"
           name="username"
           placeholder="Enter your username"
-          v-model="credentials.username"
         >
         <label for="password">Password</label>
         <input
+          v-model="credentials.password"
           type="password"
           name="password"
           placeholder="Enter your password"
-          v-model="credentials.password"
         >
-        <input type="submit" value="login">
+        <input
+          type="submit"
+          value="login"
+        >
       </form>
     </div>
   </div>

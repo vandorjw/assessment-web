@@ -1,57 +1,107 @@
 <template>
   <div>
-    <b-form v-on:submit.prevent="onSubmit">
-
-      <b-form-group id="is_requiredInputGroup" label="is_required:" label-for="is_required">
-        <b-form-checkbox id="is_requiredInput" name="is_required" v-model="question.is_required">
-        </b-form-checkbox>
+    <b-form @submit.prevent="onSubmit">
+      <b-form-group
+        id="is_requiredInputGroup"
+        label="is_required:"
+        label-for="is_required"
+      >
+        <b-form-checkbox
+          id="is_requiredInput"
+          v-model="question.is_required"
+          name="is_required"
+        />
       </b-form-group>
 
-      <b-form-group label="of_type:" label-for="of_type">
-        <b-form-select v-model="question.of_type" :options="questionType" name="of_type">
-        </b-form-select>
+      <b-form-group
+        label="of_type:"
+        label-for="of_type"
+      >
+        <b-form-select
+          v-model="question.of_type"
+          :options="questionType"
+          name="of_type"
+        />
       </b-form-group>
 
       <b-card no-body>
-        <b-tabs card no-fade>
-
-          <b-tab title="English" active>
-            <b-form-group label="Question:" label-for="en-question">
-              <b-form-input type="text" name="en-question" v-model="question.translations.en.question">
-              </b-form-input>
+        <b-tabs
+          card
+          no-fade
+        >
+          <b-tab
+            title="English"
+            active
+          >
+            <b-form-group
+              label="Question:"
+              label-for="en-question"
+            >
+              <b-form-input
+                v-model="question.translations.en.question"
+                type="text"
+                name="en-question"
+              />
             </b-form-group>
-            <v-choiceform></v-choiceform>
+            <v-choiceform />
           </b-tab>
 
           <b-tab title="French">
-            <b-form-group label="Question:" label-for="fr-question">
-              <b-form-input type="text" name="fr-question" v-model="question.translations.fr.question">
-              </b-form-input>
+            <b-form-group
+              label="Question:"
+              label-for="fr-question"
+            >
+              <b-form-input
+                v-model="question.translations.fr.question"
+                type="text"
+                name="fr-question"
+              />
             </b-form-group>
-            <v-choiceform></v-choiceform>
+            <v-choiceform />
           </b-tab>
 
           <b-tab title="Dutch">
-            <b-form-group label="Question:" label-for="nl-question">
-              <b-form-input type="text" name="nl-question" v-model="question.translations.nl.question">
-              </b-form-input>
+            <b-form-group
+              label="Question:"
+              label-for="nl-question"
+            >
+              <b-form-input
+                v-model="question.translations.nl.question"
+                type="text"
+                name="nl-question"
+              />
             </b-form-group>
-            <v-choiceform></v-choiceform>
+            <v-choiceform />
           </b-tab>
 
           <b-tab title="German">
-            <b-form-group label="Question:" label-for="de-question">
-              <b-form-input type="text" name="de-question" v-model="question.translations.de.question">
-              </b-form-input>
+            <b-form-group
+              label="Question:"
+              label-for="de-question"
+            >
+              <b-form-input
+                v-model="question.translations.de.question"
+                type="text"
+                name="de-question"
+              />
             </b-form-group>
-            <v-choiceform></v-choiceform>
+            <v-choiceform />
           </b-tab>
-
         </b-tabs>
       </b-card>
 
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="secondary">Reset</b-button>
+      <b-button
+        type="submit"
+        variant="primary"
+      >
+        Submit
+      </b-button>
+      <b-button
+        type="reset"
+        variant="secondary"
+      >
+        Reset
+      </b-button>
     </b-form>
   </div>
 </template>
@@ -66,7 +116,7 @@ export default {
   components: {
     'v-choiceform': ChoiceForm
   },
-  props: ['survey_id'],
+  props: ['surveyId'],
   data () {
     return {
       error: [],

@@ -1,10 +1,12 @@
 <template>
   <div>
     <div v-if="this.$store.state.authenticated==true">
-      <v-surveyform v-on:formSubmission="formSubmitAction"></v-surveyform>
+      <v-surveyform @formSubmission="formSubmitAction" />
     </div>
     <div v-else>
-      <router-link :to="{ name: 'Login'}">please log in</router-link>
+      <router-link :to="{ name: 'Login'}">
+        please log in
+      </router-link>
     </div>
   </div>
 </template>

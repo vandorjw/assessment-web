@@ -1,15 +1,22 @@
 <template>
   <div>
     <div v-if="this.$store.state.authenticated==true">
-       <v-surveyform v-on:formSubmission="formSubmitAction" :survey_id=this.id></v-surveyform>
-       <hr />
-       <b-btn v-b-modal="'addQuestionModal'">Add Question</b-btn>
-       <b-modal id="addQuestionModal">
-         <v-question :survey_id=this.id></v-question>
-       </b-modal>
+      <v-surveyform
+        :survey_id="this.id"
+        @formSubmission="formSubmitAction"
+      />
+      <hr>
+      <b-btn v-b-modal="'addQuestionModal'">
+        Add Question
+      </b-btn>
+      <b-modal id="addQuestionModal">
+        <v-question :survey_id="this.id" />
+      </b-modal>
     </div>
     <div v-else>
-      <router-link :to="{ name: 'Login'}">please log in</router-link>
+      <router-link :to="{ name: 'Login'}">
+        please log in
+      </router-link>
     </div>
   </div>
 </template>
