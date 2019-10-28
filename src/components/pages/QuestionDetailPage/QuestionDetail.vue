@@ -1,13 +1,19 @@
 <template>
   <div v-if="question">
-    <form v-on:submit.prevent="submitAnswer" method="post">
+    <form
+      method="post"
+      @submit.prevent="submitAnswer"
+    >
       <label for="answer">{{ question.translations.en.question }}</label>
       <input
+        v-model="answerValue"
         type="text"
         name="answer"
-        v-model="answerValue"
       >
-      <input type="submit" value="submit">
+      <input
+        type="submit"
+        value="submit"
+      >
     </form>
   </div>
   <div v-else>

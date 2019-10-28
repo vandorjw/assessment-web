@@ -1,8 +1,13 @@
 <template>
   <div>
     <ul>
-      <li v-for="survey in surveys">
-        <router-link :to="{ name: 'SurveyDetail', params: { id: survey._uid }}">{{ survey.name }}</router-link>
+      <li v-for="survey in surveys" :key="survey._uid">
+        <router-link
+          :survey="survey"
+          :to="{ name: 'SurveyDetail', params: { id: survey._uid }}"
+        >
+          {{ survey.name }}
+        </router-link>
       </li>
     </ul>
   </div>

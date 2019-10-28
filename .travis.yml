@@ -12,7 +12,7 @@ addons:
 
 script:
   - yarn run build
-  - sonar-scanner
+  # - sonar-scanner
 
 deploy:
   provider: pages
