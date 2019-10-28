@@ -5,14 +5,15 @@ node_js:
 addons:
   sonarcloud:
     organization: "vandorjw-github"
-    token:
-      secure: $SONAR_TOKEN
     github_token:
       secure: $GITHUB_TOKEN
 
+git:
+  depth: false
+
 script:
   - yarn run build
-  # - sonar-scanner
+  - sonar-scanner
 
 deploy:
   provider: pages
