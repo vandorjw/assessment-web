@@ -81,7 +81,7 @@
     "rimraf": "^3.0.0",
     "selenium-server": "^3.141.59",
     "semver": "^6.3.0",
-    "shelljs": "^0.7.6",
+    "shelljs": "^0.8.3",
     "sinon": "^4.5.0",
     "sinon-chai": "^2.8.0",
     "url-loader": "^2.1.0",
