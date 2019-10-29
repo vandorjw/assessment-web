@@ -82,7 +82,7 @@
     "selenium-server": "^3.141.59",
     "semver": "^5.5.1",
     "shelljs": "^0.7.6",
-    "sinon": "^2.1.0",
+    "sinon": "^4.5.0",
     "sinon-chai": "^2.8.0",
     "url-loader": "^2.1.0",
     "vue-loader": "^13.7.3",
