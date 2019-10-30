@@ -116,7 +116,13 @@ export default {
   components: {
     'v-choiceform': ChoiceForm
   },
-  props: ['surveyId'],
+  props: {
+    surveyId: {
+      type: String,
+      default: null,
+      required: true
+    }
+  },
   data () {
     return {
       error: [],

@@ -15,7 +15,13 @@
 import axios from 'axios'
 
 export default {
-  props: ['id'],
+  props: {
+    id: {
+      type: String,
+      default: null,
+      required: true
+    }
+  },
   data () {
     return {
       result: null,
