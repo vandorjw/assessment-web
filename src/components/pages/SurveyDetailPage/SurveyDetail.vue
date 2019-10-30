@@ -29,7 +29,10 @@
           Continue Survey
         </b-button>
         <ol>
-          <li v-for="question in survey.questions" :key="question._uid">
+          <li
+            v-for="question in survey.questions"
+            :key="question._uid"
+          >
             <router-link :to="{ name: 'QuestionDetail', params: { id: question._uid }}">
               {{ question.text }}
             </router-link>
