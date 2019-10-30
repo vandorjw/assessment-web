@@ -6,7 +6,7 @@
   >
     <b-nav-toggle target="nav_collapse" />
 
-    <b-navbar-brand :to="{ name: 'Hello'}">
+    <b-navbar-brand :to="{ name: 'Home'}">
       Assessment
     </b-navbar-brand>
 
