@@ -2,7 +2,7 @@
   <div>
     <div v-if="this.$store.state.authenticated==true">
       <v-surveyform
-        :survey_id="this.id"
+        :survey_id="id"
         @formSubmission="formSubmitAction"
       />
       <hr>
@@ -10,7 +10,7 @@
         Add Question
       </b-btn>
       <b-modal id="addQuestionModal">
-        <v-question :survey_id="this.id" />
+        <v-question :survey_id="id" />
       </b-modal>
     </div>
     <div v-else>
@@ -32,7 +32,13 @@ export default {
     'v-question': QuestionEdit,
     'v-surveyform': SurveyForm
   },
-  props: ['id'],
+  props: {
+    id: {
+      type: String,
+      default: null,
+      required: true
+    }
+  },
   data () {
     return {
       error: [],

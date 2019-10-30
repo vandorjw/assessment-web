@@ -176,7 +176,13 @@ import axios from 'axios'
 
 export default {
   name: 'SurveyForm',
-  props: ['surveyId'],
+  props: {
+    surveyId: {
+      type: String,
+      default: null,
+      required: false
+    }
+  },
   data: function () {
     return {
       error: [],

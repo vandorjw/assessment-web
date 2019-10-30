@@ -1,7 +1,10 @@
 <template>
   <div>
     <ul>
-      <li v-for="result in results" :key="result._uid">
+      <li
+        v-for="result in results"
+        :key="result._uid"
+      >
         <router-link :to="{ name: 'ResultDetail', params: { id: result._uid }}">
           {{ result._uid }}
         </router-link>
